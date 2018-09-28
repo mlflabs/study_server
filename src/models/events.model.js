@@ -6,6 +6,7 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const events = new Schema({
+    id: { type: String, required: true },//need this for vis graph and timeline
     content: { type: String, required: false },
     note: { type: String },
     start: { type: Date, required: false },
@@ -14,6 +15,9 @@ module.exports = function (app) {
     group: { type: String },
     subgroup: { type: String },
     tags: { type: [String]},
+
+    to: { type: []},
+    from: { type: []},
 
 
     _dirty: { type: Boolean },
