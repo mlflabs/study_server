@@ -8,8 +8,10 @@ module.exports = function (app) {
   const groups = new Schema({
     content: { type: String, required: true },
     color: { type: String, required: false},
-    visible: { type: Boolean, required: false},
+    //visible: { type: Boolean, required: false},
+    _nestedGroups: [String],
 
+    author: { type: String },
     _dirty: { type: Boolean },
     _newid: { type: Boolean },
     _removed: { type: Boolean },
@@ -23,3 +25,7 @@ module.exports = function (app) {
 
   return mongooseClient.model('groups', groups);
 };
+
+
+//d102b4fc5f110d6242415fb7, d1024f2a5f110d6242415fb4, d100d56395cf09b26e735fa1, 
+//

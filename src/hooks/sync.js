@@ -9,6 +9,14 @@ module.exports = {
     // context.data._newid = false;
 
     // console.log('Pre-save Sync: ', context.data);
+    return context;
+  },
+  addAuthor(context) {
+   
+    context.data.author = context.params.user.name;
+    //console.log('New event by User: ', context.params.user.name);
+    
+    // console.log('Pre-save Sync: ', context.data);
 
     return context;
   },

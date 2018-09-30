@@ -6,7 +6,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [ authenticate('jwt'), sync.preSave ],
+    create: [ authenticate('jwt'), sync.preSave, sync.addAuthor],
     update: [ authenticate('jwt'), sync.preSave ],
     patch: [ authenticate('jwt'), sync.preSave ],
     remove: [ authenticate('jwt'), sync.preSave ]

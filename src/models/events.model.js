@@ -15,6 +15,7 @@ module.exports = function (app) {
     group: { type: String },
     subgroup: { type: String },
     tags: { type: [String]},
+    author: { type: [String]},
 
     to: { type: []},
     from: { type: []},
