@@ -6,15 +6,27 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [ authenticate('jwt'), sync.preSave, sync.addAuthor],
-    update: [ authenticate('jwt'), sync.preSave ],
-    patch: [ authenticate('jwt'), sync.preSave ],
-    remove: [ authenticate('jwt'), sync.preSave ]
+    create: 
+    [ authenticate('jwt'), 
+      sync.preSave, 
+      sync.addAuthor],
+    update: 
+    [ authenticate('jwt'), 
+      async (c)=>await sync.canDeleteGroups(c),
+      sync.preSave],
+    patch: 
+    [ authenticate('jwt'), 
+      sync.canDeleteGroups, 
+      sync.preSave],
+    remove: 
+    [ authenticate('jwt'), 
+      sync.preSave,
+      async (c)=>await sync.addToChangeLog(c),  ]
   },
 
   after: {
     all: [],
-    find: [],
+    find: [sync.addQueryDate],
     get: [],
     create: [],
     update: [],
@@ -26,9 +38,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    create: [async (c)=>await sync.addToChangeLog(c)],
+    update: [async (c)=>await sync.addToChangeLog(c)],
+    patch: [async (c)=>await sync.addToChangeLog(c)],
+    remove: [async (c)=>await sync.addToChangeLog(c)]
   }
 };

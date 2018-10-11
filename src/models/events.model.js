@@ -20,14 +20,29 @@ module.exports = function (app) {
     to: { type: []},
     from: { type: []},
 
+    viewDayHide: { type: Boolean }, // = 
+    viewWeekHide: { type: Boolean },
+    viewMonthHide: { type: Boolean },
+    viewYearHide: { type: Boolean }, // = 365
+    viewDecadeHide: { type: Boolean }, // = 3650
+    viewCenturyHide: { type: Boolean }, //= 36500
+    viewMilleniumHide: { type: Boolean }, // = 365000 days
+    view5MilleniumHide: { type: Boolean }, // = 365000 days
 
-    _dirty: { type: Boolean },
-    _newid: { type: Boolean },
-    _removed: { type: Boolean },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
+    viewDayLabel: { type: String },
+    viewWeekLabel: { type: String },
+    viewMonthLabel: { type: String },
+    viewYearLabel: { type: String },
+    viewDecadeLabel: { type: String },
+    viewCenturyLabel: { type: String },
+    viewMilleniumLabel: { type: String },
+    view5MilleniumLabel: { type: String },
+
+
+    meta_dirty: { type: Boolean },
+    meta_removed: { type: Boolean },
+    createdAt: { type: Number, default: Date.now },
+    updatedAt: { type: Number,  default: Date.now },
   },
   {
     timestamps: false

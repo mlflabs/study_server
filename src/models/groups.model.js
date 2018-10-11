@@ -6,19 +6,18 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const groups = new Schema({
+    //id: { type: String },
     content: { type: String, required: true },
     color: { type: String, required: false},
     //visible: { type: Boolean, required: false},
     _nestedGroups: [String],
 
     author: { type: String },
-    _dirty: { type: Boolean },
-    _newid: { type: Boolean },
-    _removed: { type: Boolean },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
+    
+    meta_dirty: { type: Boolean },
+    meta_removed: { type: Boolean },
+    createdAt: { type: Number, default: Date.now },
+    updatedAt: { type: Number,  default: Date.now },
   }, {
     timestamps: false
   });

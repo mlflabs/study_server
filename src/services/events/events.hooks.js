@@ -8,20 +8,31 @@ module.exports = {
     all: [],// authenticate('jwt') 
     find: [],
     get: [],
-    create: [authenticate('jwt'), sync.preSave, sync.addAuthor],
-    update: [authenticate('jwt'), sync.preSave],
-    patch: [authenticate('jwt'),  sync.preSave],
-    remove: [authenticate('jwt'), sync.preSave]
+    create: 
+    [
+      authenticate('jwt'), 
+      sync.preSave, 
+      sync.addAuthor
+    ],
+    update: 
+    [ authenticate('jwt'), 
+      sync.preSave],
+    patch: 
+    [ authenticate('jwt'), 
+      sync.preSave],
+    remove: 
+    [ authenticate('jwt'), 
+      sync.preSave]
   },
 
   after: {
     all: [],
-    find: [],
+    find: [sync.addQueryDate],
     get: [],
-    create: [],
-    update: [], 
-    patch: [],
-    remove: []
+    create: [async (c)=>await sync.addToChangeLog(c)],
+    update: [async (c)=>await sync.addToChangeLog(c)], 
+    patch: [async (c)=>await sync.addToChangeLog(c)],
+    remove: [async (c)=>await sync.addToChangeLog(c)]
   },
 
   error: {
